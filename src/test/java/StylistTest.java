@@ -1,5 +1,3 @@
-//passing style all save find update delete
-//yet to do/failing   getClient
 import org.sql2o.*;
 import org.junit.*;
 import static org.junit.Assert.*;
@@ -60,12 +58,14 @@ public class StylistTest {
   }
 
   @Test
-  public void getClients_FindAllTheClientsOfTheStylist_True(){
-    Stylist testStylist = new Stylist("Sean");
-    testStylist.save();
-    Client firstClient = new Stylist("Andrew",testStylist.getId());
-    Client secondClient = new Stylist("Andrew",testStylist.getId());
-    Client [] allClients = new Client [] {firstClient,secondClient};
-    assertTrue(testStylist.getClients().containsAll(Arrays.asList(allClients)));
+  public void getClients_retrievesALlClientsFromDatabase_ClientList() {
+    Stylist myStylist = new Stylist("Sean");
+    myStylist.save();
+    Client firstClient = new Client("Andrew", myStylist.getId());
+    firstClient.save();
+    Client secondClient = new Client("Jenna", myStylist.getId());
+    secondClient.save();
+    Client[] Clients = new Client[] { firstClient, secondClient };
+    assertEquals(Arrays.asList(Clients),myStylist.getClients());
   }
 }

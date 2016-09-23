@@ -52,10 +52,10 @@ public class Stylist{
       con.createQuery(sql).addParameter("id",this.id).executeUpdate();
     }
   }
-
+//ORDER BY name ASC
   public List<Client> getClients(){
     try(Connection con = DB.sql2o.open()){
-      String sql = "SELECT * FROM clients WHERE stylistId = :id ORDER BY name ASC";
+      String sql = "SELECT * FROM clients WHERE stylistId = :id";
       return con.createQuery(sql).addParameter("id",this.id).executeAndFetch(Client.class);
     }
   }
