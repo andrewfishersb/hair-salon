@@ -1,0 +1,11 @@
+<h2>$client.getName()</h2>
+<h4>Client of: $stylist.getName()</h4>
+
+
+
+<form class="form-group" action="/stylist/$stylist.getId()/client/$client.getId()/delete" method="post">
+  <button type="submit" name="button" class="btn btn-danger" id="remove">Remove Client</button>
+</form>
+
+<a href="/">Homepage</a>
+<a href="/stylist/$stylist.getId()">Back to $client.getName()'s stylist</a>

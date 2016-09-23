@@ -3,8 +3,8 @@
   <h4><a href="/stylist/$stylist.getId()/client/$client.getId()">$client.getName()</a></h4>
 #end
 
-<h2>Update $stylist.getName()'s Information'</h2>
-<form class="form-group" action="/stylist/$stylist.getId()/update" method="post">
+<h2>Update $stylist.getName()'s Information</h2>
+<form class="form-group" action="/stylist/$stylist.getId()/updated" method="post">
   <label for="update">Enter Client's Information</label>
   <input type="text" name="update" required class="form-control">
   <button type="submit" class="btn btn-info">Update</button>
@@ -12,7 +12,14 @@
 
 <h2>Add a new Client</h2>
 <form class="form-group" action="/stylist/$stylist.getId()" method="post">
-  <label for="name">Enter Client's Information</label>
-  <input type="text" name="name" required class="form-control">
+  <label for="client">Enter Client's Information</label>
+  <input type="text" name="client" id="client" required class="form-control">
   <button type="submit" class="btn btn-primary">Add Client</button>
 </form>
+
+
+<form class="form-group" action="/stylist/$stylist.getId()/delete" method="post">
+  <button type="submit" name="button" class="btn btn-danger" id="fire">Fire Employee</button>
+</form>
+
+<a href="/">Back home</a>
