@@ -1,0 +1,19 @@
+<h1>Welcome To This Salon</h1>
+
+
+<h2>All Stylists</h2>
+
+#foreach($stylist in $stylists)
+  <h4><a href="/stylist/$stylist.getId()">$stylist.getName()</a></h4>
+#end
+
+<h3>Add an Employee</h3>
+<form class="" action="/" method="post">
+  <div class="form-group">
+    <label for="name"></label>
+    <input type="text" name="name" class="form-control" required>
+  </div>
+  <button type="submit" class="btn btn-primary" name="button">Add Employee</button>
+</form>
+
+<!-- possiblity to add a client with a selector -->
