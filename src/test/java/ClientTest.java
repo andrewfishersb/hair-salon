@@ -8,7 +8,8 @@ public class ClientTest {
   public DatabaseRule database = new DatabaseRule();
 
   @Test
-  public Client_Instantiates_True(){
-    Client testClient = new Client("Andrew");
-    assertTrue(testClients instanceof Client);
+  public void Client_Instantiates_True(){
+    Client testClient = new Client("Andrew",1);
+    assertTrue(testClient instanceof Client);
   }
+}
