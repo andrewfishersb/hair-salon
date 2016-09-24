@@ -26,7 +26,7 @@ public class App {
       return new ModelAndView(model,layout);
     }, new VelocityTemplateEngine());
 
-//stylist's page
+
     get("/stylist/:id", (request,response)->{
       Map<String, Object> model = new HashMap<String, Object>();
       Stylist newStylist = Stylist.find(Integer.parseInt(request.params("id")));
@@ -46,7 +46,6 @@ public class App {
       return new ModelAndView(model,layout);
     }, new VelocityTemplateEngine());
 
-//adds a client
     post("/stylist/:id", (request,response)->{
       Map<String, Object> model = new HashMap<String, Object>();
       Stylist newStylist = Stylist.find(Integer.parseInt(request.params("id")));
@@ -59,13 +58,23 @@ public class App {
       return new ModelAndView(model,layout);
     }, new VelocityTemplateEngine());
 
-    // //updates stylist information
     post("/stylist/:id/updated", (request,response)->{
       Map<String, Object> model = new HashMap<String, Object>();
       Stylist updateStylist = Stylist.find(Integer.parseInt(request.params("id")));
       String updatedName = request.queryParams("update");
       updateStylist.update(updatedName);
       String url = String.format("/stylist/%d", updateStylist.getId());
+      response.redirect(url);
+      return new ModelAndView(model,layout);
+    }, new VelocityTemplateEngine());
+
+    post("/stylist/:stylist_id/client/:id/updated", (request,response)->{
+      Map<String, Object> model = new HashMap<String, Object>();
+      Stylist theStylist = Stylist.find(Integer.parseInt(request.params("stylist_id")));
+      Client updatedClient = Client.find(Integer.parseInt(request.params("id")));
+      String updatedName = request.queryParams("update-client");
+      updatedClient.update(updatedName);
+      String url = String.format("/stylist/%d/client/%d", theStylist.getId(), updatedClient.getId());
       response.redirect(url);
       return new ModelAndView(model,layout);
     }, new VelocityTemplateEngine());
@@ -86,7 +95,6 @@ public class App {
       Map<String, Object> model = new HashMap<String, Object>();
       Stylist theStylist = Stylist.find(Integer.parseInt(request.params("stylist_id")));
       Client deletedClient = Client.find(Integer.parseInt(request.params("id")));
-      // Stylist theStylist = Stylist.find(deletedClient.getStylistId());
       deletedClient.delete();
       model.put("stylist",theStylist);
       model.put("clients",theStylist.getClients());

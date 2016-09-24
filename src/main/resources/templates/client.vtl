@@ -1,11 +1,23 @@
-<h2>$client.getName()</h2>
-<h4>Client of: $stylist.getName()</h4>
+<nav class="navbar navbar-inverse">
+  <ul class="nav nav-pills">
+    <li role="presentation"><a href="/">Home</a></li>
+    <li role="presentation"><a href="/stylist/$stylist.getId()">Back to $client.getName()'s stylist</a></li>
+  </ul>
+</nav>
+
+<div class="jumbotron">
+  <h1>$client.getName()</h1>
+  <h3>Stylist: $stylist.getName()</h3>
+</div>
 
 
+<h2>Change Clients Information</h2>
+<form class="form-group" action="/stylist/$stylist.getId()/client/$client.getId()/updated" method="post">
+  <label for="update-client">Enter Client's Information</label>
+  <input type="text" name="update-client" required class="form-control">
+  <button type="submit" class="btn btn-info">Update</button>
+</form>
 
 <form class="form-group" action="/stylist/$stylist.getId()/client/$client.getId()/delete" method="post">
   <button type="submit" name="button" class="btn btn-danger" id="remove">Remove Client</button>
 </form>
-
-<a href="/">Homepage</a>
-<a href="/stylist/$stylist.getId()">Back to $client.getName()'s stylist</a>

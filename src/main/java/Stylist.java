@@ -1,4 +1,3 @@
-//  equals  getClient
 import org.sql2o.*;
 import java.util.List;
 
@@ -20,7 +19,7 @@ public class Stylist{
 
   public static List<Stylist> all(){
     try(Connection con = DB.sql2o.open()){
-      String sql = "SELECT * FROM stylists";
+      String sql = "SELECT * FROM stylists ORDER BY name ASC";
       return con.createQuery(sql).executeAndFetch(Stylist.class);
     }
   }
@@ -52,10 +51,10 @@ public class Stylist{
       con.createQuery(sql).addParameter("id",this.id).executeUpdate();
     }
   }
-//ORDER BY name ASC
+
   public List<Client> getClients(){
     try(Connection con = DB.sql2o.open()){
-      String sql = "SELECT * FROM clients WHERE stylistid=:id";
+      String sql = "SELECT * FROM clients WHERE stylistid=:id ORDER BY name ASC";
       return con.createQuery(sql).addParameter("id",this.id).executeAndFetch(Client.class);
     }
   }

@@ -25,7 +25,7 @@ public class Client{
 
   public static List<Client> all(){
     try(Connection con = DB.sql2o.open()){
-      String sql = "SELECT * FROM clients";
+      String sql = "SELECT * FROM clients ORDER BY name ASC";
       return con.createQuery(sql).executeAndFetch(Client.class);
     }
   }
@@ -65,9 +65,6 @@ public class Client{
     }else{
       Client newClient = (Client) otherClient;
       return this.getName().equals(newClient.getName()) && this.getId() == newClient.getId();
-
     }
   }
-
-
 }
